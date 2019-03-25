@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: service111
+server:
+  port: 30014
+eureka:
+  instance:
+    prefer-ip-address: true
+    status-page-url-path: /actuator/info
+    health-check-url-path: /actuator/health
+    metadata-map:
+      zone: zone-1
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    prefer-same-zone-eureka: true
+    #地区
+    region: beijing
+    #不同的区域，则只会选择前面的注册，但是常理来说不该把两个不同的区域做为备用
+#    availability-zones:
+#      beijing: zone-1,zone-2
+#    service-url:
+#      zone-1: http://localhost:30000/eureka/
+#      zone-2: http://localhost:30001/eureka/
+    availability-zones:
+      beijing: zone-1
+    service-url:
+      zone-1: http://localhost:30000/eureka/
+
+
+zone.name: zone-1

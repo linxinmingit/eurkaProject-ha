@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: consumer
+server:
+  port: 30020
+eureka:
+  instance:
+    prefer-ip-address: true
+    status-page-url-path: /actuator/info
+    health-check-url-path: /actuator/health
+    #这是元数据，目前没发现什么作用
+    metadata-map:
+      zone: zone-1
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    prefer-same-zone-eureka: true
+    #地区
+    region: beijing
+    #指定可用区，可以指定多个可用区，或是指定一个配置多个服务中心，看似效果一样，其实不一样，可用区之间
+    #一般是通过城市来划分，不同的可用区相当于不同的城市，虽然数据互通但是，如果布置两台在一个城市相对于牢靠一点
+    #这里跟顺序有关系，默认使用前面的可用区，如果该可用区不可用了，则会找后面的可用区
+#    availability-zones:
+#      beijing: zone-1,zone-2
+#    #绑定可用区的ip端口
+#    service-url:
+#      zone-1: http://localhost:30000/eureka/
+#      zone-2: http://localhost:30001/eureka/
+
+    availability-zones:
+      beijing: zone-2
+    #绑定可用区的ip端口
+    service-url:
+      zone-2: http://localhost:30001/eureka/

@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: Server-1
+server:
+  port: 30000
+eureka:
+  instance:
+    prefer-ip-address: true
+    status-page-url-path: /actuator/info
+    health-check-url-path: /actuator/health
+    hostname: localhost
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    prefer-same-zone-eureka: true
+    #指定区域
+    region: beijing
+    #指定可用区
+    availability-zones:
+      beijing: zone-1,zone-2
+    service-url:
+      zone-1: http://localhost:30000/eureka/
+      zone-2: http://localhost:30001/eureka/

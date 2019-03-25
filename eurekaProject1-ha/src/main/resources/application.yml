@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: Server-2
+server:
+  port: 30001
+eureka:
+  instance:
+    prefer-ip-address: true
+    #状态页面的URL，相对路径，默认使用 HTTP 访问，如果需要使用 HTTPS则需要使用绝对路径配置
+    status-page-url-path: /actuator/info
+    #健康检查页面的URL，相对路径，默认使用 HTTP 访问，如果需要使用 HTTPS则需要使用绝对路径配置
+    health-check-url-path: /actuator/health
+    hostname: localhost
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    prefer-same-zone-eureka: true
+    #地区
+    region: beijing
+    #可用区，这里必须是map形式的值，区域为键，可用区为值
+    availability-zones:
+      beijing: zone-2,zone-1
+    #绑定可用区的发布的eureka服务
+    service-url:
+      zone-1: http://localhost:30000/eureka/
+      zone-2: http://localhost:30001/eureka/
